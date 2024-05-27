@@ -121,8 +121,8 @@ namespace negocio
                 datos.setearParametro("@Dormitorios", house.Dormitorios);
                 datos.setearParametro("@Baños", house.Baños);
                 datos.setearParametro("@Piscina", house.Piscina);
-                datos.setearParametro("@IdCalefacción", house.Tipo_de_Calefaccion);
-                datos.setearParametro("@IdVentanas", house.Tipo_de_Ventana);
+                datos.setearParametro("@IdCalefacción", house.Tipo_de_Calefaccion.Id);
+                datos.setearParametro("@IdVentanas", house.Tipo_de_Ventana.Id);
                 datos.setearParametro("@Id", house.Id);
 
                 datos.ejecutarAccion();

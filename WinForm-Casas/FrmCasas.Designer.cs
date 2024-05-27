@@ -45,13 +45,13 @@
             this.dgvViviendas.MultiSelect = false;
             this.dgvViviendas.Name = "dgvViviendas";
             this.dgvViviendas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvViviendas.Size = new System.Drawing.Size(534, 166);
+            this.dgvViviendas.Size = new System.Drawing.Size(558, 166);
             this.dgvViviendas.TabIndex = 0;
             this.dgvViviendas.SelectionChanged += new System.EventHandler(this.dgvViviendas_SelectionChanged);
             // 
             // pbxCasas
             // 
-            this.pbxCasas.Location = new System.Drawing.Point(552, 37);
+            this.pbxCasas.Location = new System.Drawing.Point(576, 37);
             this.pbxCasas.Name = "pbxCasas";
             this.pbxCasas.Size = new System.Drawing.Size(284, 166);
             this.pbxCasas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -60,7 +60,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(12, 224);
+            this.btnAgregar.Location = new System.Drawing.Point(107, 222);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(112, 224);
+            this.btnModificar.Location = new System.Drawing.Point(207, 222);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 3;
@@ -80,7 +80,7 @@
             // 
             // btnEliminarFisico
             // 
-            this.btnEliminarFisico.Location = new System.Drawing.Point(225, 224);
+            this.btnEliminarFisico.Location = new System.Drawing.Point(320, 222);
             this.btnEliminarFisico.Name = "btnEliminarFisico";
             this.btnEliminarFisico.Size = new System.Drawing.Size(118, 23);
             this.btnEliminarFisico.TabIndex = 4;
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 309);
+            this.ClientSize = new System.Drawing.Size(881, 309);
             this.Controls.Add(this.btnEliminarFisico);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);

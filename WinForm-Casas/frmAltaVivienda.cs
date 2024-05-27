@@ -50,11 +50,12 @@ namespace WinForm_Casas
                 vivienda.Dormitorios = int.Parse(txtDormitorios.Text);
                 vivienda.Baños = int.Parse(txtBaños.Text);
                 vivienda.Piscina = (string)cboPiscina.SelectedItem;
-                vivienda.Tipo_de_Ventana = (Ventana)cboVentana.SelectedItem;
-                vivienda.Tipo_de_Calefaccion = (Calefaccion)cboCalefaccion.SelectedItem;
+                //vivienda.Tipo_de_Ventana = (Ventana)cboVentana.SelectedItem as Ventana;
+                //vivienda.Tipo_de_Calefaccion = (Calefaccion)cboCalefaccion.SelectedItem as Calefaccion;
+                vivienda.Tipo_de_Ventana = cboVentana.SelectedItem as Ventana;
+                vivienda.Tipo_de_Calefaccion = cboCalefaccion.SelectedItem as Calefaccion;
 
-
-                if(vivienda.Id != 0)
+                if (vivienda.Id != 0)
                 {
                     datos.modificar(vivienda);
                     MessageBox.Show("Modificado exitosamente");
@@ -77,27 +78,20 @@ namespace WinForm_Casas
         private void frmAltaVivienda_Load(object sender, EventArgs e)
         {
             VentanaDatos ventanaDatos = new VentanaDatos();
+            CalefaccionDatos calefaccionDatos = new CalefaccionDatos();
+
             try
             {
                 cboVentana.DataSource = ventanaDatos.listar();
                 cboVentana.ValueMember = "Id";
                 cboVentana.DisplayMember = "TipoVentana";
 
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
-            CalefaccionDatos calefaccionDatos = new CalefaccionDatos();
-            try
-            {
+                
                 cboCalefaccion.DataSource = calefaccionDatos.listar();
                 cboCalefaccion.ValueMember = "Id";
                 cboCalefaccion.DisplayMember = "TipoCalefaccion";
 
-                if(vivienda != null)
+                if (vivienda != null)
                 {
                     txtLote.Text = vivienda.Casa_lote.ToString();
                     txtAmbientes.Text = vivienda.Ambientes.ToString();
@@ -107,19 +101,23 @@ namespace WinForm_Casas
                     txtDormitorios.Text = vivienda.Dormitorios.ToString();
                     txtBaños.Text = vivienda.Baños.ToString();
                     cboPiscina.Text = vivienda.Piscina;
-                    cboVentana.SelectedValue = vivienda.Tipo_de_Ventana.Id;
-                    cboCalefaccion.SelectedValue = vivienda.Tipo_de_Calefaccion.Id;
 
-
-
+                    if (vivienda.Tipo_de_Ventana != null)
+                    {
+                        cboVentana.SelectedValue = vivienda.Tipo_de_Ventana.Id;
+                    }
+                    if (vivienda.Tipo_de_Calefaccion != null)
+                    {
+                        cboCalefaccion.SelectedValue = vivienda.Tipo_de_Calefaccion.Id;
+                    }
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
+
 
         private void txtImagenDescriptiva_Leave(object sender, EventArgs e)
         {

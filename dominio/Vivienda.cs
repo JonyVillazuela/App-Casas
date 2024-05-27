@@ -31,6 +31,10 @@ namespace dominio
         [DisplayName("Tipo de Calefacción")]
         public Calefaccion Tipo_de_Calefaccion { get; set; }
 
-
+        public Vivienda()
+        {
+            Tipo_de_Ventana = new Ventana(); 
+            Tipo_de_Calefaccion = new Calefaccion(); 
+        }
     }
 }
