@@ -10,12 +10,16 @@ using System.Windows.Forms;
 using dominio;
 using datos;
 using negocio;
+using System.IO;
+using System.Configuration;
+
 
 namespace WinForm_Casas
 {
     public partial class frmAltaVivienda : Form
     {
         private Vivienda vivienda = null;
+        private OpenFileDialog archivo = null;
         public frmAltaVivienda()
         {
             InitializeComponent();
@@ -50,10 +54,10 @@ namespace WinForm_Casas
                 vivienda.Dormitorios = int.Parse(txtDormitorios.Text);
                 vivienda.Baños = int.Parse(txtBaños.Text);
                 vivienda.Piscina = (string)cboPiscina.SelectedItem;
-                //vivienda.Tipo_de_Ventana = (Ventana)cboVentana.SelectedItem as Ventana;
-                //vivienda.Tipo_de_Calefaccion = (Calefaccion)cboCalefaccion.SelectedItem as Calefaccion;
-                vivienda.Tipo_de_Ventana = cboVentana.SelectedItem as Ventana;
-                vivienda.Tipo_de_Calefaccion = cboCalefaccion.SelectedItem as Calefaccion;
+                vivienda.Tipo_de_Ventana = (Ventana)cboVentana.SelectedItem as Ventana;
+                vivienda.Tipo_de_Calefaccion = (Calefaccion)cboCalefaccion.SelectedItem as Calefaccion;
+                //vivienda.Tipo_de_Ventana =cboVentana.SelectedItem as Ventana;
+                //vivienda.Tipo_de_Calefaccion = cboCalefaccion.SelectedItem as Calefaccion;
 
                 if (vivienda.Id != 0)
                 {
@@ -65,7 +69,12 @@ namespace WinForm_Casas
                     datos.agregar(vivienda);
                     MessageBox.Show("Agregado exitosamente");
                 }
-               
+
+                //Guardo la imagen si la levanto localmente
+                if (archivo != null && !(txtImagenDescriptiva.Text.ToUpper().Contains("HTTP"))) 
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+
+
                 Close();
             }
             catch (Exception ex)
@@ -82,11 +91,22 @@ namespace WinForm_Casas
 
             try
             {
+                List<Ventana> ventanas = new List<Ventana>
+                {
+                    new Ventana { Id = 1, TipoVentana = "Vidrio simple" },
+                    new Ventana { Id = 2, TipoVentana = "DVH" }
+                };
+
                 cboVentana.DataSource = ventanaDatos.listar();
                 cboVentana.ValueMember = "Id";
                 cboVentana.DisplayMember = "TipoVentana";
 
-                
+                List<Calefaccion> calefacciones = new List<Calefaccion>
+                {
+                    new Calefaccion { Id = 1, TipoCalefaccion = "Radiadores" },
+                    new Calefaccion { Id = 2, TipoCalefaccion = "Losa radiante" }
+                };
+
                 cboCalefaccion.DataSource = calefaccionDatos.listar();
                 cboCalefaccion.ValueMember = "Id";
                 cboCalefaccion.DisplayMember = "TipoCalefaccion";
@@ -101,14 +121,16 @@ namespace WinForm_Casas
                     txtDormitorios.Text = vivienda.Dormitorios.ToString();
                     txtBaños.Text = vivienda.Baños.ToString();
                     cboPiscina.Text = vivienda.Piscina;
+                    //cboCalefaccion.SelectedValue = vivienda.Tipo_de_Calefaccion.Id;
+                    //cboVentana.SelectedValue = vivienda.Tipo_de_Ventana.Id;
 
                     if (vivienda.Tipo_de_Ventana != null)
                     {
-                        cboVentana.SelectedValue = vivienda.Tipo_de_Ventana.Id;
+                      cboVentana.SelectedValue = vivienda.Tipo_de_Ventana.Id;
                     }
                     if (vivienda.Tipo_de_Calefaccion != null)
                     {
-                        cboCalefaccion.SelectedValue = vivienda.Tipo_de_Calefaccion.Id;
+                      cboCalefaccion.SelectedValue = vivienda.Tipo_de_Calefaccion.Id;
                     }
                 }
             }
@@ -134,6 +156,24 @@ namespace WinForm_Casas
             {
 
                 pbxCasas.Load("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png");
+            }
+        }
+
+        private void AgregarImagen_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg|png|*.png";
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtImagenDescriptiva.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+
+                //guardo la imagen
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+
+                //guardar imagen en pc y la ruta en base de datos
+
+
             }
         }
     }

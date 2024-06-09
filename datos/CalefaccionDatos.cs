@@ -14,7 +14,7 @@ namespace datos
             List<Calefaccion> lista = new List<Calefaccion>();
             AccesoDatos datos = new AccesoDatos();
 
-            try
+              try
             {
                 datos.setearConsulta("Select Id, [Tipo de Calefaccion] from Calefaccion");
                 datos.ejecutarLectura();

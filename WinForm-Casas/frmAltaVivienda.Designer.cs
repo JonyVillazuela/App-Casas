@@ -49,6 +49,7 @@
             this.lblImagenDescriptiva = new System.Windows.Forms.Label();
             this.txtImagenDescriptiva = new System.Windows.Forms.TextBox();
             this.pbxCasas = new System.Windows.Forms.PictureBox();
+            this.AgregarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCasas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -228,18 +229,29 @@
             // 
             // pbxCasas
             // 
-            this.pbxCasas.Location = new System.Drawing.Point(270, 15);
+            this.pbxCasas.Location = new System.Drawing.Point(289, 15);
             this.pbxCasas.Name = "pbxCasas";
             this.pbxCasas.Size = new System.Drawing.Size(318, 259);
             this.pbxCasas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxCasas.TabIndex = 20;
             this.pbxCasas.TabStop = false;
             // 
+            // AgregarImagen
+            // 
+            this.AgregarImagen.Location = new System.Drawing.Point(240, 100);
+            this.AgregarImagen.Name = "AgregarImagen";
+            this.AgregarImagen.Size = new System.Drawing.Size(32, 20);
+            this.AgregarImagen.TabIndex = 21;
+            this.AgregarImagen.Text = "+";
+            this.AgregarImagen.UseVisualStyleBackColor = true;
+            this.AgregarImagen.Click += new System.EventHandler(this.AgregarImagen_Click);
+            // 
             // frmAltaVivienda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 386);
+            this.ClientSize = new System.Drawing.Size(660, 386);
+            this.Controls.Add(this.AgregarImagen);
             this.Controls.Add(this.pbxCasas);
             this.Controls.Add(this.txtImagenDescriptiva);
             this.Controls.Add(this.lblImagenDescriptiva);
@@ -294,5 +306,6 @@
         private System.Windows.Forms.Label lblImagenDescriptiva;
         private System.Windows.Forms.TextBox txtImagenDescriptiva;
         private System.Windows.Forms.PictureBox pbxCasas;
+        private System.Windows.Forms.Button AgregarImagen;
     }
 }

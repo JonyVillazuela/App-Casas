@@ -14,7 +14,8 @@ namespace datos
 			List<Ventana> lista =new List<Ventana>();
 			AccesoDatos datos = new AccesoDatos();
 
-			try
+
+            try
 			{
 				datos.setearConsulta("Select Id, [Tipo de Ventana] from Ventanas");
 				datos.ejecutarLectura();
